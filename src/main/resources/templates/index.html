@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/globals.css}">
+</head>
+<body>
+<h1>Lista de Tarefas</h1>
+<form th:action="@{/add}" th:object="${newTodo}" method="post">
+    <input type="text" th:field="*{title}" placeholder="Adicionar nova tarefa"/>
+    <button type="submit">Adicionar</button>
+</form>
+<ul>
+    <li th:each="todo : ${todos}">
+        <span th:text="${todo.title}"></span>
+        <a th:href="@{/delete/{id}(id=${todo.id})}">Remover</a>
+    </li>
+</ul>
+</body>
+</html>
